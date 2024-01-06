@@ -1,0 +1,4 @@
+name: Trains
+version: '${version}'
+main: org.infotoast.trains.Trains
+api-version: '1.20'
