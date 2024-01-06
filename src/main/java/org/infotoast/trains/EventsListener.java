@@ -5,17 +5,20 @@ import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
 import java.util.ArrayList;
 
 public class EventsListener implements org.bukkit.event.Listener {
-    private static ArrayList<PlayerClickMinecart> playersActiveChain;
+    private static ArrayList<PlayerClickMinecart> playersActiveChain = new ArrayList<>();
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerEntityInteract(PlayerInteractEntityEvent evt) {
+    public void onPlayerEntityInteract(PlayerInteractAtEntityEvent evt) {
+        Trains.logger.info("Player clicked entity");
         Entity minecartClicked = evt.getRightClicked();
         if (Common.isMinecartType(minecartClicked.getType())) {
-            if (evt.getPlayer().getItemOnCursor().getType().equals(Material.CHAIN)) {
+            Trains.logger.info("Entity is minecart");
+            if (evt.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.CHAIN)) {
+                Trains.logger.info("Material is chain.");
                 if (playersActiveChain.contains(evt.getPlayer().getUniqueId())) {
                     Trains.links.newLink(playersActiveChain.get(playersActiveChain.indexOf(evt.getPlayer().getUniqueId())).getEntityUUID(), minecartClicked.getUniqueId());
                     evt.getPlayer().sendMessage("§6§b[Trains]§r §5Minecarts linked!");
