@@ -56,6 +56,16 @@ public class MinecartLinks {
         return null;
     }
 
+    public ArrayList<Entity> getLinkingPartners(Entity m1) {
+        ArrayList<Entity> entities = new ArrayList<>();
+        for (MinecartLink links : linkDB) {
+            if (links.minecartIsInLink(m1)) {
+                entities.add(links.getLinkedMinecart(m1));
+            }
+        }
+        return entities;
+    }
+
     @Override
     public String toString() {
         String fullString = "";

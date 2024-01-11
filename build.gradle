@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'xyz.jpenilla.run-paper' version '2.2.2'
+    id 'io.papermc.paperweight.userdev' version '1.5.11'
 }
 
 group = 'org.infotoast'
@@ -20,6 +21,7 @@ repositories {
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT"
+    paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
 }
 
 def targetJavaVersion = 17
@@ -42,7 +44,13 @@ tasks {
     runServer {
         minecraftVersion '1.20.4'
     }
+
+    assemble {
+        dependsOn reobfJar
+    }
 }
+
+
 
 processResources {
     def props = [version: version]

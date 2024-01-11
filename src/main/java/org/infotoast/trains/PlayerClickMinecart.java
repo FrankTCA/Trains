@@ -36,4 +36,9 @@ public class PlayerClickMinecart {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Player ID: " + playerID + ", Entity ID: " + entityID;
+    }
 }

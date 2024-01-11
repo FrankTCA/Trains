@@ -23,6 +23,7 @@ public final class Trains extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        logger.info("Saving links!");
+        LinksFile.save(links);
     }
 }
