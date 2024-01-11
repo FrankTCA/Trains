@@ -36,8 +36,6 @@ public class Common {
     public static float[] yawToFacing(float yaw) {
         float[] result = radiusSwitch(yaw);
         if (result == null) {
-            Trains.logger.warning("Weird yaw!");
-            Trains.logger.warning("Yaw: " + yaw);
             return radiusSwitch(numClosestTo360(yaw));
         }
         return result;
